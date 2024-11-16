@@ -24,12 +24,26 @@ shadow.innerHTML = `
       border-radius: 8px;
     }
     .product-card h2 {
-      font-size: 1.2rem;
+      font-size: 1.5rem;
+      font-weight: bold;
       margin: 10px 0;
     }
-    .product-card p {
+    .price-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .current-price {
+      font-size: 1.2rem;
+      color: #28a745;
+      font-weight: bold;
+    }
+    .original-price {
       font-size: 1rem;
-      color: #333;
+      color: #999;
+      text-decoration: line-through;
     }
     .quantity-selector {
       display: flex;
@@ -76,7 +90,10 @@ shadow.innerHTML = `
   <div class="product-card">
     <img src="${image}" alt="${title}">
     <h2>${title}</h2>
-    <p>${price}</p>
+    <div class="price-container">
+      <span class="current-price">${price}</span>
+      ${compareAtPrice ? `<span class="original-price">${compareAtPrice}</span>` : ''}
+    </div>
     <div class="quantity-selector">
       <input type="number" id="quantity" min="1" value="1">
       <button class="add-to-cart">Add to Cart</button>
@@ -84,7 +101,6 @@ shadow.innerHTML = `
     <a href="${url}" class="view-product">View Product</a>
   </div>
 `;
-
 
     // Add event listener for 'Add to Cart' button
     const addToCartButton = shadow.querySelector('.add-to-cart');
