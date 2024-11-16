@@ -4,15 +4,12 @@
 
 <div class="product-card-container">
   <product-card
-    data-id="{{ product.variants.first.id }}"
     data-title="{{ product.title }}"
     data-price="{{ product.price | money }}"
-    data-compare-at-price="{{ product.compare_at_price | money }}"
     data-image="{{ product.featured_image | img_url: 'medium' }}"
     data-url="{{ product.url }}"
   ></product-card>
 </div>
-
 
 {% schema %}
 {
