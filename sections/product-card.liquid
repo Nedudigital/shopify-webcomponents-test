@@ -1,3 +1,7 @@
+{% if section.settings.product %}
+  {% assign product = all_products[section.settings.product] %}
+{% endif %}
+
 <div class="product-card-container">
   <product-card
     data-title="{{ product.title }}"
@@ -6,6 +10,7 @@
     data-url="{{ product.url }}"
   ></product-card>
 </div>
+
 {% schema %}
 {
   "name": "Product Card",
