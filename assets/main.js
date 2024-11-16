@@ -31,6 +31,13 @@ shadow.innerHTML = `
       font-size: 1rem;
       color: #333;
     }
+    .price-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
     .quantity-selector {
       display: flex;
       align-items: center;
@@ -76,8 +83,10 @@ shadow.innerHTML = `
   <div class="product-card">
     <img src="${image}" alt="${title}">
     <h2>${title}</h2>
-    <p>${price}</p>
-    <div class="quantity-selector">
+<div class="price-container">
+      <span class="current-price">${price}</span>
+      ${compareAtPrice ? `<span class="original-price">${compareAtPrice}</span>` : ''}
+    </div>    <div class="quantity-selector">
       <input type="number" id="quantity" min="1" value="1">
       <button class="add-to-cart">Add to Cart</button>
     </div>
