@@ -8,125 +8,45 @@ class ProductCard extends HTMLElement {
     const image = this.getAttribute('data-image') || 'https://via.placeholder.com/150';
     const url = this.getAttribute('data-url') || '#';
 
-    // Create the product card HTML template
-shadow.innerHTML = `
-  <style>
-    .product-card {
-      border: 1px solid #e1e1e1;
-      padding: 16px;
-      text-align: center;
-      border-radius: 8px;
-      max-width: 300px;
-      margin: auto;
-    }
-    .product-card img {
-      width: 100%;
-      border-radius: 8px;
-    }
-    .product-card h2 {
-      font-size: 1.2rem;
-      margin: 10px 0;
-    }
-    .product-card p {
-      font-size: 1rem;
-      color: #333;
-    }
-    .quantity-selector {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 10px;
-    }
-    .quantity-selector input {
-      width: 60px;
-      padding: 5px;
-      text-align: center;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    .add-to-cart {
-      padding: 10px 20px;
-      background-color: #28a745;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .add-to-cart:hover {
-      background-color: #218838;
-    }
-    .view-product {
-      padding: 10px 20px;
-      background-color: #28a745;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 10px;
-      transition: background-color 0.3s;
-    }
-    .view-product:hover {
-      background-color: #218838;
-    }
-  </style>
-  <div class="product-card">
-    <img src="${image}" alt="${title}">
-    <h2>${title}</h2>
-    <p>${price}</p>
-    <div class="quantity-selector">
-      <input type="number" id="quantity" min="1" value="1">
-      <button class="add-to-cart">Add to Cart</button>
-    </div>
-    <a href="${url}" class="view-product">View Product</a>
-  </div>
-`;
-
-
-    // Add event listener for 'Add to Cart' button
-    const addToCartButton = shadow.querySelector('.add-to-cart');
-    const quantityInput = shadow.querySelector('#quantity');
-
-    addToCartButton.addEventListener('click', () => {
-      const quantity = parseInt(quantityInput.value);
-      if (quantity > 0) {
-        this.addToCart(productId, quantity);
-      } else {
-        alert('Please enter a valid quantity.');
-      }
-    });
-  }
-
-  // Function to add product to cart
-  addToCart(productId, quantity) {
-    fetch('/cart/add.js', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        id: productId,
-        quantity: quantity,
-      }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Failed to add product to cart.');
+    shadow.innerHTML = `
+      <style>
+        .product-card {
+          border: 1px solid #e1e1e1;
+          padding: 16px;
+          text-align: center;
+          border-radius: 8px;
         }
-        return response.json();
-      })
-      .then((data) => {
-        alert(`Added ${quantity} item(s) to the cart.`);
-      })
-      .catch((error) => {
-        console.error(error);
-        alert('An error occurred. Please try again.');
-      });
+        .product-card img {
+          max-width: 100%;
+          height: auto;
+          border-radius: 8px;
+        }
+        .product-card h2 {
+          font-size: 1.2rem;
+          margin: 10px 0;
+        }
+        .product-card p {
+          font-size: 1rem;
+          color: #333;
+        }
+        .product-card a {
+          display: inline-block;
+          margin-top: 10px;
+          padding: 8px 16px;
+          background-color: #0073e6;
+          color: #fff;
+          text-decoration: none;
+          border-radius: 4px;
+        }
+      </style>
+      <div class="product-card">
+        <img src="${image}" alt="${title}">
+        <h2>${title}</h2>
+        <p>${price}</p>
+        <a href="${url}">View Product</a>
+      </div>
+    `;
   }
 }
 
-// Define the custom element
 customElements.define('product-card', ProductCard);
