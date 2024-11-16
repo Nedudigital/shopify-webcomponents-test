@@ -1,6 +1,8 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
-{% endschema %}
+<div class="product-card-container">
+  <product-card
+    data-title="{{ product.title }}"
+    data-price="{{ product.price | money }}"
+    data-image="{{ product.featured_image | img_url: 'medium' }}"
+    data-url="{{ product.url }}"
+  ></product-card>
+</div>
