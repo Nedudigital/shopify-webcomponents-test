@@ -32,18 +32,31 @@ shadow.innerHTML = `
       color: #333;
     }
     .quantity-selector {
-      margin-top: 10px;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
     }
     .quantity-selector input {
-      width: 50px;
+      width: 60px;
       padding: 5px;
       text-align: center;
-      margin-right: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
     }
-    .add-to-cart,
+    .add-to-cart {
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .add-to-cart:hover {
+      background-color: #218838;
+    }
     .view-product {
       padding: 10px 20px;
       background-color: #28a745;
@@ -56,7 +69,6 @@ shadow.innerHTML = `
       margin-top: 10px;
       transition: background-color 0.3s;
     }
-    .add-to-cart:hover,
     .view-product:hover {
       background-color: #218838;
     }
@@ -72,6 +84,8 @@ shadow.innerHTML = `
     <a href="${url}" class="view-product">View Product</a>
   </div>
 `;
+
+
     // Add event listener for 'Add to Cart' button
     const addToCartButton = shadow.querySelector('.add-to-cart');
     const quantityInput = shadow.querySelector('#quantity');
